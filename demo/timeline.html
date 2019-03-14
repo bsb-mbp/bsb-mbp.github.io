@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=0">
+  <title>Next UI Demo</title>
+  <script src="vue.min.js"></script>
+  <script src="../next-ui/timeline.js"></script>
+</head>
+<body style="background: #ececec;">
+  <div id="app">
+    <timeline :steps="steps" :current="step" direction="vertical"></timeline>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      components: {
+        timeline: window.nextUI.timeline
+      },
+      data: function () {
+        return {
+          steps: [
+            {time: '2019-01-07', name: '购买日期'},
+            {time: '2019-02-07', name: '确认中'},
+            {time: '2019-03-17', name: '起息日'},
+            {time: '2019-04-27', name: '下一起息日'},
+            {time: '2019-06-12', name: '下一到期日'}
+          ],
+          step: 1
+        };
+      }
+    });
+  </script>
+</body>
+</html>
