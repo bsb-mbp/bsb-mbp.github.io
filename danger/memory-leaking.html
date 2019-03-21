@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=0">
+  <title>Memory Leak</title>
+</head>
+<body>
+	<div>Eating your memory...</div>
+	<div id="text"></div>
+	<script type="text/javascript">
+		function Test()  
+		{  
+		    this.obj= {};
+		    this.index = 1;
+		    this.timer = null;
+		    var cache = [];
+		    this.timer = window.setInterval(() =>{
+		        this.index += 1;
+		        document.querySelector('#text').innerHTML = this.index;
+		        var str = (new Array(100000)).join('*');
+		        this.obj = {
+		            val: str + this.index,
+		            junk: [...cache]
+		        };
+		        cache.push(this.obj);
+		    }, 1);
+		}  
+		test = new Test();
+	</script>
+</body>
+</html>
