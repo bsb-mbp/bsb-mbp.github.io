@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=0">
+  <title>Next UI Demo</title>
+
+  <link rel="stylesheet" href="main.css">
+  <script src="vue.min.js"></script>
+  <script src="./../index.js"></script>
+</head>
+<body>
+<div id="app">
+  <div class="section">
+    <timeline
+      :steps="steps"
+      direction="vertical"
+    />
+  </div>
+  <div class="section">
+    <timeline
+      :steps="stepsHorn"
+      transition
+    />
+    <button
+      style="margin-top: 10px;"
+      @click="stepsHorn[2].SysNo = '0'; stepsHorn[4].SysNo = '1'"
+    >
+      go step 5
+    </button>
+  </div>
+  <div class="section">
+    <button @click="showPicker">
+      弹出Picker
+    </button>
+  </div>
+  <div class="section">
+    <button @click="showCascadePicker">
+      弹出级联Picker
+    </button>
+  </div>
+</div>
+<script>
+  Vue.use(window.nextUI.timeline);
+  Vue.use(window.nextUI.picker);
+  Vue.use(window.nextUI.cascadePicker);
+  new Vue({
+    el: '#app',
+    components: {
+      // timeline: window.nextUI.timeline
+    },
+    data() {
+      return {
+        steps: [
+          {timeFlag: '2019-01-07', timeFlagMsg: '购买日期'},
+          {timeFlag: '02-07', timeFlagMsg: '确认中'},
+          {timeFlag: '03-17', timeFlagMsg: '起息日', SysNo: '1'},
+          {timeFlag: '04-27', timeFlagMsg: '下一起息日'},
+          {timeFlag: '06-12', timeFlagMsg: '下一到期日'}
+        ],
+        stepsHorn: [
+          {timeFlag: '01.07', timeFlagMsg: '购买日期'},
+          {timeFlag: '02.07', timeFlagMsg: '确认中'},
+          {timeFlag: '03.17', timeFlagMsg: '起息日', SysNo: '1'},
+          {timeFlag: '06.12', timeFlagMsg: '下一起息日'},
+          {timeFlag: '06.12', timeFlagMsg: '下一到期日'}
+        ],
+        picker: null,
+        cascadePicker: null
+      };
+    },
+    methods: {
+      showPicker() {
+        if (!this.picker) {
+          this.picker = this.$createPicker({
+            title: '请选择',
+            data: [
+              [
+                {text: '包商银行', value: 1},
+                {text: '招商银行西二旗支行', value: 2},
+                {text: '中国工商银行包头东河区铁西支行', value: 3},
+                {text: '建设银行', value: 4},
+                {text: '中国农业银行', value: 5},
+                {text: '交通银行', value: 6},
+                {text: '包头市农行银行', value: 7},
+                {text: '中国银行', value: 8}
+              ],
+              [
+                {text: '包商银行', value: 1},
+                {text: '招商银行西二旗支行', value: 2},
+                {text: '中国工商银行包头东河区铁西支行', value: 3},
+                {text: '建设银行', value: 4},
+                {text: '中国农业银行', value: 5},
+                {text: '交通银行', value: 6},
+                {text: '包头市农行银行', value: 7},
+                {text: '中国银行', value: 8}
+              ]
+            ]
+          });
+        }
+        this.picker.show();
+      },
+      showCascadePicker() {
+        if (!this.cascadePicker) {
+          this.cascadePicker = this.$createCascadePicker({
+            title: '请选择',
+            data: [
+              {
+                value: 1,
+                text: '包商银行',
+                children: [
+                  {
+                    value: 11,
+                    text: '北京',
+                    children: [
+                      {value: 111, text: '小营路支行'},
+                      {value: 112, text: '大屯路支行'}
+                    ]
+                  },
+                  {
+                    value: 12,
+                    text: '包头',
+                    children: [
+                      {value: 121, text: '东河区西阁外支行'},
+                      {value: 122, text: '青山区幸福路支行'},
+                      {value: 123, text: '昆都仑区友谊大街支行'}
+                    ]
+                  },
+                  {
+                    value: 13,
+                    text: '呼和浩特',
+                    children: [
+                      {value: 131, text: '赛罕区支行'},
+                      {value: 132, text: '回民区支行'},
+                      {value: 133, text: '新城区支行'}
+                    ]
+                  }
+                ]
+              },
+              {
+                value: 2,
+                text: '中国工商银行-ICBC-95555',
+                children: [
+                  {
+                    value: 21,
+                    text: '上海',
+                    children: [
+                      {value: 211, text: '浦东支行'},
+                      {value: 212, text: '浦西支行'}
+                    ]
+                  },
+                  {
+                    value: 22,
+                    text: '北京',
+                    children: [
+                      {value: 221, text: '北京西二旗支行'},
+                      {value: 222, text: '北京回龙观支行'},
+                      {value: 223, text: '北京小营支行'}
+                    ]
+                  },
+                  {
+                    value: 23,
+                    text: '西安',
+                    children: [
+                      {value: 231, text: '碑林区西大街支行'},
+                      {value: 232, text: '雁塔区西安电子科技大学支行'},
+                      {value: 233, text: '长安区郭杜镇支行'}
+                    ]
+                  }
+                ]
+              }
+            ]
+          });
+        }
+        this.cascadePicker.show();
+      }
+    }
+  });
+</script>
+</body>
+</html>

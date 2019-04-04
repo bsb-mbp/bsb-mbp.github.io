@@ -3,62 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=0">
-  <title>Next UI Demo</title>
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/devices.min.css">
-  <link rel="stylesheet" href="css/main.css">
+  <title>timeline</title>
+
+  <link rel="stylesheet" href="main.css">
   <script src="vue.min.js"></script>
-  <script src="../next-ui/timeline.js"></script>
+  <script src="./../index.js"></script>
 </head>
 <body>
-  <div class="marvel-device iphone-x">
-    <div class="notch">
-      <div class="camera"></div>
-      <div class="speaker"></div>
-    </div>
-    <div class="top-bar"></div>
-    <div class="sleep"></div>
-    <div class="bottom-bar"></div>
-    <div class="volume"></div>
-    <div class="overflow">
-      <div class="shadow shadow--tr"></div>
-      <div class="shadow shadow--tl"></div>
-      <div class="shadow shadow--br"></div>
-      <div class="shadow shadow--bl"></div>
-    </div>
-    <div class="inner-shadow"></div>
-    <div class="screen">
-      <div id="app">
-        <timeline :steps="steps" :current="step" direction="vertical" transition></timeline>
-        <div style="margin-top: 20px;">
-          <button @click="step = step + 1">点我+1</button>
-          <button @click="step = step + 2">点我+2</button>
-          <button @click="step = step + 3">点我+3</button>
-          <button @click="step = 0">点我恢复</button>
-        </div>
-      </div>
-    </div>
+<div id="app">
+  <div class="title">
+    Timeline
   </div>
-
-  <script>
-    new Vue({
-      el: '#app',
-      components: {
-        timeline: window.nextUI.timeline
-      },
-      data: function () {
-        return {
-          steps: [
-            {time: '2019-01-07', name: '购买日期'},
-            {time: '2019-02-07', name: '确认中'},
-            {time: '2019-03-17', name: '起息日'},
-            {time: '2019-04-27', name: '下一起息日'},
-            {time: '2019-06-12', name: '下一到期日'}
-          ],
-          step: 1
-        };
-      }
-    });
-  </script>
+  <div class="section">
+    <timeline
+      :steps="steps"
+      direction="vertical"
+    />
+  </div>
+  <div class="section">
+    <timeline
+      :steps="stepsHorn"
+    />
+  </div>
+</div>
+<script>
+  Vue.use(window.nextUI.timeline);
+  new Vue({
+    el: '#app',
+    data: function () {
+      return {
+        steps: [
+          {timeFlag: '2019-01-07', timeFlagMsg: '购买日期'},
+          {timeFlag: '02-07', timeFlagMsg: '确认中'},
+          {timeFlag: '03-17', timeFlagMsg: '起息日', SysNo: '1'},
+          {timeFlag: '04-27', timeFlagMsg: '下一起息日'},
+          {timeFlag: '06-12', timeFlagMsg: '下一到期日'}
+        ],
+        stepsHorn: [
+          {timeFlag: '01.07', timeFlagMsg: '购买日期'},
+          {timeFlag: '02.07', timeFlagMsg: '确认中'},
+          {timeFlag: '03.17', timeFlagMsg: '起息日', SysNo: '1'},
+          {timeFlag: '06.12', timeFlagMsg: '下一起息日'},
+          {timeFlag: '06.12', timeFlagMsg: '到期日'}
+        ]
+      };
+    },
+    methods: {
+      //
+    }
+  });
+</script>
 </body>
 </html>
