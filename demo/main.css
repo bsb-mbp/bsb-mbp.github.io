@@ -48,6 +48,10 @@ body {
   padding: 15px;
 }
 
+.section.no-padding {
+  padding: 0;
+}
+
 .section:not(:last-child) {
   margin-bottom: 10px;
 }

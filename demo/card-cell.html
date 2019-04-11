@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>切卡</title>
+  <meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=0">
+
+  <link rel="stylesheet" href="main.css">
+  <script src="vue.min.js"></script>
+  <script src="./../index.js"></script>
+</head>
+<body>
+<div id="app">
+  <div class="title">
+    切卡
+  </div>
+  <div class="section no-padding">
+    <card-cell :list="cardList" />
+  </div>
+  <div class="section no-padding">
+    <card-cell :list="cardList" layout="compact-display" :selected-index="4" />
+  </div>
+  <div class="section no-padding">
+    <card-cell :list="cardList" layout="compact-action" action-title="基金赎回至" />
+  </div>
+  <div class="section no-padding">
+    <card-cell :list="cardList" layout="simple" />
+  </div>
+  <div class="section no-padding">
+    <card-cell :list="cardList" layout="mini" />
+  </div>
+  <div class="section no-padding">
+    <card-cell :list="cardList" layout="mini" :is-switchable="false" :selected-index="4" />
+  </div>
+</div>
+<script>
+  new Vue({
+    el: '#app',
+    components: {
+      [window.nextUI.cardCell.name]: window.nextUI.cardCell
+    },
+    data: function () {
+      return {
+        cardList: [{
+          'E_ACCOUNT_TYPE': '0004',
+          'E_ACCT_NO': '50000000000000668655',
+          'E_ACTP_FLAG': '2',
+          'E_ACCOUNT_BALANCE': '0.00',
+          'E_AVAILABLEAMOUNT': '0.00',
+          'E_CARD_NO': '62176027080005011',
+          'E_ISSUE_BRANCH': '0002',
+          'E_CARD_STATE': '01',
+          'E_ID_VERFIED': 'N'
+        }, {
+          'E_ACCOUNT_TYPE': '0004',
+          'E_ACCT_NO': '50000000000000663030',
+          'E_ACTP_FLAG': '3',
+          'E_ACCOUNT_BALANCE': '0.00',
+          'E_AVAILABLEAMOUNT': '0.00',
+          'E_CARD_NO': '62176022460000054',
+          'E_ISSUE_BRANCH': '0101',
+          'E_CARD_STATE': '01',
+          'E_ID_VERFIED': 'N'
+        }, {
+          'E_ACCOUNT_TYPE': '0004',
+          'E_ACCT_NO': '50000000000000668663',
+          'E_ACTP_FLAG': '2',
+          'E_ACCOUNT_BALANCE': '0.00',
+          'E_AVAILABLEAMOUNT': '0.00',
+          'E_CARD_NO': '62176027080005029',
+          'E_ISSUE_BRANCH': '0002',
+          'E_CARD_STATE': '01',
+          'E_ID_VERFIED': 'N'
+        }, {
+          'E_ACCOUNT_TYPE': '0004',
+          'E_ACCT_NO': '50000000000000667943',
+          'E_ACTP_FLAG': '2',
+          'E_ACCOUNT_BALANCE': '7962457.49',
+          'E_AVAILABLEAMOUNT': '7952457.48',
+          'E_CARD_NO': '62176056080010283',
+          'E_ISSUE_BRANCH': '1401',
+          'E_CARD_STATE': '01',
+          'E_ID_VERFIED': 'N'
+        }, {
+          'E_ACCOUNT_TYPE': '0004',
+          'E_ACCT_NO': '50000000000000650526',
+          'E_ACTP_FLAG': '1',
+          'E_ACCOUNT_BALANCE': '79355397.07',
+          'E_AVAILABLEAMOUNT': '75593297.07',
+          'E_CARD_NO': '62176022030539284',
+          'E_ISSUE_BRANCH': '0101',
+          'E_CARD_STATE': '01',
+          'E_ID_VERFIED': 'Y'
+        }, {
+          'E_ACCOUNT_TYPE': '0004',
+          'E_ACCT_NO': '50000000000000667357',
+          'E_ACTP_FLAG': '2',
+          'E_ACCOUNT_BALANCE': '30.00',
+          'E_AVAILABLEAMOUNT': '30.00',
+          'E_CARD_NO': '62176056080010085',
+          'E_ISSUE_BRANCH': '1401',
+          'E_CARD_STATE': '01',
+          'E_ID_VERFIED': 'N'
+        }].map(item => ({
+          cardType: item.E_ACTP_FLAG,
+          cardNo: item.E_CARD_NO,
+          balance: item.E_ACCOUNT_BALANCE,
+          availableBalance: item.E_AVAILABLEAMOUNT
+        }))
+      };
+    },
+    methods: {
+      //
+    }
+  });
+</script>
+</body>
+</html>

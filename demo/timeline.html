@@ -25,6 +25,21 @@
       :steps="stepsHorn"
     />
   </div>
+  <div class="section">
+    <timeline
+      :steps="stepsHorn2"
+    />
+  </div>
+  <div class="section">
+    <timeline
+      :steps="stepsHorn3"
+    />
+  </div>
+  <div class="section">
+    <timeline
+      :steps="stepsHorn4"
+    />
+  </div>
 </div>
 <script>
   Vue.use(window.nextUI.timeline);
@@ -44,7 +59,28 @@
           {timeFlag: '02.07', timeFlagMsg: '确认中'},
           {timeFlag: '03.17', timeFlagMsg: '起息日', SysNo: '1'},
           {timeFlag: '06.12', timeFlagMsg: '下一起息日'},
-          {timeFlag: '06.12', timeFlagMsg: '到期日'}
+          {timeFlag: '06.12', timeFlagMsg: '下一到期日'}
+        ],
+        stepsHorn2: [
+          {timeFlag: '01.07', timeFlagMsg: '购买日期', SysNo: '1'},
+          {timeFlag: '02.07', timeFlagMsg: '确认中'},
+          {timeFlag: '03.17', timeFlagMsg: '起息日'},
+          {timeFlag: '06.12', timeFlagMsg: '下一起息日'},
+          {timeFlag: '06.12', timeFlagMsg: '下一到期日'}
+        ],
+        stepsHorn3: [
+          {timeFlag: '01.07', timeFlagMsg: '购买日期'},
+          {timeFlag: '02.07', timeFlagMsg: '确认中'},
+          {timeFlag: '03.17', timeFlagMsg: '起息日', SysNo: '1'},
+          {timeFlag: '06.12', timeFlagMsg: '下一起息日asdfasdf'},
+          {timeFlag: '06.12', timeFlagMsg: '下一到期日asdfasdf'}
+        ],
+        stepsHorn4: [
+          {timeFlag: '01.07', timeFlagMsg: '购买日期'},
+          {timeFlag: '02.07', timeFlagMsg: '确认中'},
+          {timeFlag: '03.17', timeFlagMsg: '起息日'},
+          {timeFlag: '06.12', timeFlagMsg: '下一起息日'},
+          {timeFlag: '06.12', timeFlagMsg: '下一到期日', SysNo: '1'}
         ]
       };
     },
