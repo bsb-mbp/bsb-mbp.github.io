@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>压屏</title>
+  <meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=0">
+
+  <link rel="stylesheet" href="main.css">
+  <script src="vue.min.js"></script>
+  <script src="./../index.js"></script>
+</head>
+<body>
+<div id="app">
+  <div class="title">
+    压屏
+  </div>
+  <div class="section">
+    <div @click="showLandscape=true;">弹窗</div>
+    <md-landscape v-model="showLandscape">
+      <div slot="header">
+        <img src="https://bsb-mbp.github.io/assets/landscape-update-banner.png" alt="" width="100%">
+      </div>
+      <div slot="content">
+        版本3.5.8
+        <br>
+        1、【优化】登录时刷脸通不过提供了短信验证码备用认证，在此对因刷脸识别老不通过的客户致以诚挚的歉意；
+        <br>
+        2、【优化】更新版本时因苹果本身机制问题需要删除App后重新安装进行了优化，在此对因新版本不能登录卡住的客户致以诚挚的歉意；
+        <br>
+        3、【优化】修正了一些已知的问题。
+      </div>
+      <div slot="footer" style="padding: 20px 0;">
+        <div style="background-image: linear-gradient(-136deg, #FFBF6C 0%, #FF8B3A 100%); border-radius: 100px;
+            font-size: 18px; color: #FFFFFF; text-align: center; height: 48px; line-height: 48px;
+            width: 200px; margin: 0 auto;"
+             @click="alert('点了升级')">
+          立即升级
+        </div>
+      </div>
+    </md-landscape>
+  </div>
+  <div class="section">
+    <div @click="showFullScreenLandscape=true;">全屏压屏</div>
+    <md-landscape v-model="showFullScreenLandscape" full-screen title="我是标题">
+      <div slot="content">
+        <div style="line-height: 26px;">
+          预授予额度是针对优质客户专门匹配的信用贷款额度，您可通过手机银行直接在线办理、签约、提款。
+          <br>
+          1、预授信额度在通知您之日起30天内有效，请及时办理审批及提款；
+          <br>
+          2、预授信额度以实际审批为准；
+          <br>
+          3、预授信额度期限最长1年。
+        </div>
+      </div>
+    </md-landscape>
+  </div>
+</div>
+<script>
+  new Vue({
+    el: '#app',
+    components: {
+      [window.nextUI.landscape.name]: window.nextUI.landscape
+    },
+    data: function () {
+      return {
+        showLandscape: false,
+        showFullScreenLandscape: false
+      };
+    },
+    methods: {
+      //
+    }
+  });
+</script>
+</body>
+</html>
