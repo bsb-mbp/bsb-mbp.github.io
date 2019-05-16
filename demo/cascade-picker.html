@@ -19,9 +19,6 @@
       级联picker
     </button>
   </div>
-  <div class="section">
-    <div style="text-align: center;">全部的配置选项请参考：<a href="https://didi.github.io/cube-ui/#/zh-CN/docs/picker">官方示例</a></div>
-  </div>
 </div>
 <script>
   const bankList = [
@@ -90,7 +87,7 @@
       ]
     }
   ];
-  Vue.use(window.nextUI.cascadePicker);
+  Vue.use(window.nextUI.picker);
   new Vue({
     el: '#app',
     data: function () {
@@ -101,18 +98,20 @@
     methods: {
       showPicker() {
         if (!this.picker) {
-          this.picker = this.$createCascadePicker({
+          this.picker = this.$createPicker({
             title: '请选择',
             data: bankList,
-            onSelect: this.selectHandle,
-            onCancel: this.cancelHandle
+            $events: {
+              confirm: this.selectHandle,
+              cancel: this.cancelHandle
+            }
           });
         }
         this.picker.show();
       },
 
-      selectHandle(value, index, text) {
-        alert(`选择的项目value:${value}, text:${text}, 在数据源中的索引:${index}`);
+      selectHandle([head, div, branch]) {
+        alert(`选择的项目value:${branch.value}, text:${branch.text}, 在数据源中的索引:${branch.index}`);
       },
       cancelHandle() {
         alert('点击了取消');

@@ -12,6 +12,15 @@
 <body>
 <div id="app">
   <div class="section">
+    <div>
+      <div style="margin-bottom: 10px;">实现0.5px的边框，10px的文字，兼容ios+安卓</div>
+      <tag text="我是内容一"></tag>
+      <tag text="我是文字内容" type="warn" style="margin-left: 10px;"></tag>
+    </div>
+    <br>
+    <tag text="我是文字内容" flat></tag>
+  </div>
+  <div class="section">
     <div @click="showLandscape=true;">弹窗</div>
     <md-landscape v-model="showLandscape">
       <div slot="header">
@@ -96,22 +105,17 @@
       弹出Picker
     </button>
   </div>
-  <div class="section">
-    <button @click="showCascadePicker">
-      弹出级联Picker
-    </button>
-  </div>
 </div>
 <script>
   Vue.use(window.nextUI.timeline);
   Vue.use(window.nextUI.picker);
-  Vue.use(window.nextUI.cascadePicker);
   Vue.use(window.nextUI.landscape);
   new Vue({
     el: '#app',
     components: {
       [window.nextUI.cardCell.name]: window.nextUI.cardCell,
-      [window.nextUI.marquee.name]: window.nextUI.marquee
+      [window.nextUI.marquee.name]: window.nextUI.marquee,
+      [window.nextUI.tag.name]: window.nextUI.tag
     },
     data() {
       return {
@@ -132,7 +136,6 @@
           {timeFlag: '06.12', timeFlagMsg: '下一到期日'}
         ],
         picker: null,
-        cascadePicker: null,
         cardList: [{
           'E_ACCOUNT_TYPE': '0004',
           'E_ACCT_NO': '50000000000000668655',
@@ -202,9 +205,19 @@
       };
     },
     methods: {
+      pickerConfirm() {
+        debugger
+      },
+      pickerCancel() {
+        debugger
+      },
       showPicker() {
         if (!this.picker) {
           this.picker = this.$createPicker({
+            $events: {
+              confirm: this.pickerConfirm,
+              cancel: this.pickerCancel
+            },
             title: '请选择',
             data: [
               [
@@ -231,6 +244,36 @@
           });
         }
         this.picker.show();
+      },
+      showCubePicker() {
+        if (!this.cubePicker) {
+          this.cubePicker = this.$createCubePicker({
+            title: '请选择',
+            data: [
+              [
+                {text: '包商银行', value: 1},
+                {text: '招商银行西二旗支行', value: 2},
+                {text: '中国工商银行包头东河区铁西支行', value: 3},
+                {text: '建设银行', value: 4},
+                {text: '中国农业银行', value: 5},
+                {text: '交通银行', value: 6},
+                {text: '包头市农行银行', value: 7},
+                {text: '中国银行', value: 8}
+              ],
+              [
+                {text: '包商银行', value: 1},
+                {text: '招商银行西二旗支行', value: 2},
+                {text: '中国工商银行包头东河区铁西支行', value: 3},
+                {text: '建设银行', value: 4},
+                {text: '中国农业银行', value: 5},
+                {text: '交通银行', value: 6},
+                {text: '包头市农行银行', value: 7},
+                {text: '中国银行', value: 8}
+              ]
+            ]
+          });
+        }
+        this.cubePicker.show();
       },
       showCascadePicker() {
         if (!this.cascadePicker) {

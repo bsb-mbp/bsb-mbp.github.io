@@ -15,6 +15,15 @@
     压屏
   </div>
   <div class="section">
+    <div @click="showCompactLandscape=true;">简体内容弹窗(无header和footer)</div>
+    <md-landscape v-model="showCompactLandscape" compact :closable="false">
+      <div slot="content" style="position: relative; height: 100%;">
+        <img width="100%" src="https://gss1.bdstatic.com/9vo3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=b372bd3285d4b31cf03c93bdbfed4042/2cf5e0fe9925bc31a5ffa7e950df8db1cb137025.jpg" alt="">
+        <div style="position: absolute; width: 286px; height: 40px; top: 50%; margin-top: -10px; text-align: center; font-size: 40px; color: #f00;">100000</div>
+      </div>
+    </md-landscape>
+  </div>
+  <div class="section">
     <div @click="showLandscape=true;">弹窗</div>
     <md-landscape v-model="showLandscape">
       <div slot="header">
@@ -37,6 +46,15 @@
           立即升级
         </div>
       </div>
+    </md-landscape>
+  </div>
+  <div class="section">
+    <div @click="showLandscape1=true;">简略配置一般弹窗</div>
+    <md-landscape v-model="showLandscape1"
+      banner-src="https://bsb-mbp.github.io/assets/landscape-update-banner.png"
+      content="修正了一些已知的问题"
+      confirm-text="我知道了"
+      @confirm="confirm">
     </md-landscape>
   </div>
   <div class="section">
@@ -65,11 +83,15 @@
     data: function () {
       return {
         showLandscape: false,
-        showFullScreenLandscape: false
+        showLandscape1: false,
+        showFullScreenLandscape: false,
+        showCompactLandscape: false
       };
     },
     methods: {
-      //
+      confirm() {
+        alert('点击了confirm button');
+      }
     }
   });
 </script>

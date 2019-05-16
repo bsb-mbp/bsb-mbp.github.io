@@ -33,6 +33,11 @@ summary{display:list-item}
 template{display:none}
 [hidden]{display:none}
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background: #eaeaea;
 }
